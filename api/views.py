@@ -15,7 +15,14 @@ from rest_framework import status
 
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import *
-from rest_framework.decorators import *
+from rest_framework.decorators import * 
+ 
+def home(request):
+	"""
+	Send requests to / to the ember.js clientside app """
+			 
+	return render_to_response('index.html',
+				{}, RequestContext(request))
 
 class UserViewSet(viewsets.ModelViewSet):
 	"""
@@ -47,4 +54,4 @@ class UserprofileViewSet(viewsets.ModelViewSet):
 	API endpoint that allows users to be viewed.
 	"""
 	queryset = Userprofile.objects.all()
-	serializer_class = UserprofileSerializer
+	serializer_class = UserprofileSerializer 
