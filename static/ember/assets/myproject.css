@@ -20,4 +20,16 @@ body { padding-top: 70px; }
 	min-height: 64px;
 	min-width: 64px;
 	max-width: 240px;
+}  
+
+.auth-form {
+	margin-top: -34px;
+} 
+
+.auth-user-field {
+	width: 150px !important;
+}
+
+.search-form {
+	margin-left: -250px;
 }

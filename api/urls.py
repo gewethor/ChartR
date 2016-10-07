@@ -10,7 +10,8 @@ router.register(r'users', views.UserViewSet)
 router.register(r'likes', views.LikeViewSet)
 router.register(r'userprofiles', views.UserprofileViewSet)
 
-urlpatterns = [
+urlpatterns = [ 
+	url(r'^session/', views.Session.as_view()),
     url(r'^', include(router.urls)),
 
     #Django Rest Auth

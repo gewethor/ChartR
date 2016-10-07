@@ -21,6 +21,94 @@ define('myproject/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initi
   exports['default'] = App;
 
 });
+define('myproject/components/auth-manager', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Component.extend({
+		isLoggedIn: false,
+		username: '',
+		password: '',
+		errorMsg: '',
+		remember: false,
+		userid: -1,
+		actions: {
+			login: function login() {
+				//do stuff to authenticate here
+				var username = this.get('username');
+				var password = this.get('password');
+				var remember = this.get('remember');
+				var data = {
+					'username': username,
+					'password': password };
+				var controllerObj = this;
+				Ember['default'].$.post('../api/session/', data, function (response) {
+					if (response.isauthenticated) {
+						//success
+						console.log('Login POST Request to ../api/session/ was successful.');
+						controllerObj.set('username', response.username);
+						controllerObj.set('userid', response.userid);
+						controllerObj.set('isLoggedIn', true);
+
+						if (remember) {
+							//save username and pass to local storage
+							localStorage.setItem('remember', true);
+							localStorage.setItem('username', controllerObj.get('username'));
+							localStorage.setItem('password', controllerObj.get('password'));
+						} else {
+							localStorage.removeItem('remember');
+							localStorage.removeItem('username');
+							localStorage.removeItem('password');
+						}
+						controllerObj.set('password', '');
+					} else {
+						//errors
+						console.log('Login POST Request to ../api/session/ was unsuccessful.');
+						controllerObj.set('errorMsg', response.message);
+					}
+				});
+			},
+			logout: function logout() {
+				var controllerObj = this;
+				Ember['default'].$.ajax({ url: '../api/session/', type: 'DELETE' }).then(function (response) {
+					console.log('Logout DELETE Request to ../api/session/ was successful:' + response);
+					controllerObj.set('isLoggedIn', false);
+					controllerObj.set('errorMsg', '');
+					controllerObj.set('username', '');
+					controllerObj.set('userid', -1);
+
+					if (localStorage.remember) {
+						controllerObj.set('remember', localStorage.remember);
+						controllerObj.set('username', localStorage.username);
+						controllerObj.set('password', localStorage.password);
+					}
+				});
+			}
+		},
+		init: function init() {
+			this._super();
+			var controllerObj = this;
+			Ember['default'].$.get('../api/session/', function (response) {
+				if (response.isauthenticated) {
+					//success
+					console.log('The user: \'' + response.username + '\' is currently logged in.');
+					controllerObj.set('username', response.username);
+					controllerObj.set('userid', response.userid);
+					controllerObj.set('isLoggedIn', true);
+				} else {
+					//errors
+					console.log('The user is not currently logged in.');
+				}
+			});
+			if (localStorage.remember) {
+				this.set('remember', localStorage.remember);
+				this.set('username', localStorage.username);
+				this.set('password', localStorage.password);
+			}
+		}
+	});
+
+});
 define('myproject/components/bs-accordion-item', ['exports', 'ember-bootstrap/components/bs-accordion-item'], function (exports, bs_accordion_item) {
 
 	'use strict';
@@ -1891,7 +1979,9 @@ define('myproject/templates/application', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("		");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n	");
@@ -1913,7 +2003,7 @@ define('myproject/templates/application', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, block = hooks.block, get = hooks.get;
+        var hooks = env.hooks, block = hooks.block, content = hooks.content, get = hooks.get;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -1931,10 +2021,366 @@ define('myproject/templates/application', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(dom.childAt(fragment, [2, 1, 3]),1,1);
-        var morph1 = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
-        block(env, morph0, context, "bs-form", [], {"formLayout": "inline", "action": "search"}, child0, null);
-        block(env, morph1, context, "liquid-if", [get(env, context, "filteredPhotosLoaded")], {"use": "toDown"}, child1, child2);
+        var element9 = dom.childAt(fragment, [2, 1, 3]);
+        var morph0 = dom.createMorphAt(element9,1,1);
+        var morph1 = dom.createMorphAt(element9,2,2);
+        var morph2 = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
+        block(env, morph0, context, "bs-form", [], {"formLayout": "inline", "class": "search-form", "action": "search"}, child0, null);
+        content(env, morph1, context, "auth-manager");
+        block(env, morph2, context, "liquid-if", [get(env, context, "filteredPhotosLoaded")], {"use": "toDown"}, child1, child2);
+        return fragment;
+      }
+    };
+  }()));
+
+});
+define('myproject/templates/components/auth-manager', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.12.0",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode(" \n	");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("p");
+          dom.setAttribute(el1,"class","auth-form");
+          var el2 = dom.createTextNode("\n		Hello ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n		");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("button");
+          dom.setAttribute(el2,"type","button");
+          dom.setAttribute(el2,"class","btn btn-default");
+          var el3 = dom.createTextNode("Log out");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n	");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode(" \n	");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content, element = hooks.element;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element5 = dom.childAt(fragment, [1]);
+          var element6 = dom.childAt(element5, [3]);
+          var morph0 = dom.createMorphAt(element5,1,1);
+          content(env, morph0, context, "username");
+          element(env, element6, context, "action", ["logout"], {});
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      var child0 = (function() {
+        return {
+          isHTMLBars: true,
+          revision: "Ember@1.12.0",
+          blockParams: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          build: function build(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("\n		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("form");
+            dom.setAttribute(el1,"class","form-inline auth-form");
+            var el2 = dom.createTextNode("\n\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("div");
+            dom.setAttribute(el2,"class","form-group has-error");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createElement("label");
+            dom.setAttribute(el3,"class","control-label");
+            var el4 = dom.createElement("div");
+            dom.setAttribute(el4,"class","alert alert-danger");
+            dom.setAttribute(el4,"style","padding: 5px; margin-bottom: 0px;");
+            dom.setAttribute(el4,"role","alert");
+            var el5 = dom.createComment("");
+            dom.appendChild(el4, el5);
+            dom.appendChild(el3, el4);
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("div");
+            dom.setAttribute(el2,"class","form-group has-error");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("label");
+            dom.setAttribute(el2,"class","checkbox");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode(" Remember me\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("button");
+            dom.setAttribute(el2,"type","button");
+            dom.setAttribute(el2,"class","btn btn-default");
+            var el3 = dom.createTextNode("Sign in");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n\n		");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode(" \n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          render: function render(context, env, contextualElement) {
+            var dom = env.dom;
+            var hooks = env.hooks, content = hooks.content, get = hooks.get, inline = hooks.inline, element = hooks.element;
+            dom.detectNamespace(contextualElement);
+            var fragment;
+            if (env.useFragmentCache && dom.canClone) {
+              if (this.cachedFragment === null) {
+                fragment = this.build(dom);
+                if (this.hasRendered) {
+                  this.cachedFragment = fragment;
+                } else {
+                  this.hasRendered = true;
+                }
+              }
+              if (this.cachedFragment) {
+                fragment = dom.cloneNode(this.cachedFragment, true);
+              }
+            } else {
+              fragment = this.build(dom);
+            }
+            var element2 = dom.childAt(fragment, [1]);
+            var element3 = dom.childAt(element2, [1]);
+            var element4 = dom.childAt(element2, [7]);
+            var morph0 = dom.createMorphAt(dom.childAt(element3, [1, 0]),0,0);
+            var morph1 = dom.createMorphAt(element3,3,3);
+            var morph2 = dom.createMorphAt(dom.childAt(element2, [3]),1,1);
+            var morph3 = dom.createMorphAt(dom.childAt(element2, [5]),1,1);
+            content(env, morph0, context, "errorMsg");
+            inline(env, morph1, context, "input", [], {"class": "form-control auth-user-field", "value": get(env, context, "username"), "action": "login", "placeholder": "Username"});
+            inline(env, morph2, context, "input", [], {"class": "form-control auth-user-field", "value": get(env, context, "password"), "action": "login", "placeholder": "Password", "type": "password"});
+            inline(env, morph3, context, "input", [], {"type": "checkbox", "checked": get(env, context, "remember")});
+            element(env, element4, context, "action", ["login"], {});
+            return fragment;
+          }
+        };
+      }());
+      var child1 = (function() {
+        return {
+          isHTMLBars: true,
+          revision: "Ember@1.12.0",
+          blockParams: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          build: function build(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("		");
+            dom.appendChild(el0, el1);
+            var el1 = dom.createElement("form");
+            dom.setAttribute(el1,"class","form-inline auth-form");
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("div");
+            dom.setAttribute(el2,"class","form-group");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("div");
+            dom.setAttribute(el2,"class","form-group");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("label");
+            dom.setAttribute(el2,"class","checkbox");
+            var el3 = dom.createTextNode("\n				");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode(" Remember me\n			");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n			");
+            dom.appendChild(el1, el2);
+            var el2 = dom.createElement("button");
+            dom.setAttribute(el2,"type","button");
+            dom.setAttribute(el2,"class","btn btn-default");
+            var el3 = dom.createTextNode("Sign in");
+            dom.appendChild(el2, el3);
+            dom.appendChild(el1, el2);
+            var el2 = dom.createTextNode("\n\n		");
+            dom.appendChild(el1, el2);
+            dom.appendChild(el0, el1);
+            var el1 = dom.createTextNode("\n");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          render: function render(context, env, contextualElement) {
+            var dom = env.dom;
+            var hooks = env.hooks, get = hooks.get, inline = hooks.inline, element = hooks.element;
+            dom.detectNamespace(contextualElement);
+            var fragment;
+            if (env.useFragmentCache && dom.canClone) {
+              if (this.cachedFragment === null) {
+                fragment = this.build(dom);
+                if (this.hasRendered) {
+                  this.cachedFragment = fragment;
+                } else {
+                  this.hasRendered = true;
+                }
+              }
+              if (this.cachedFragment) {
+                fragment = dom.cloneNode(this.cachedFragment, true);
+              }
+            } else {
+              fragment = this.build(dom);
+            }
+            var element0 = dom.childAt(fragment, [1]);
+            var element1 = dom.childAt(element0, [7]);
+            var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),1,1);
+            var morph1 = dom.createMorphAt(dom.childAt(element0, [3]),1,1);
+            var morph2 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
+            inline(env, morph0, context, "input", [], {"class": "form-control auth-user-field", "value": get(env, context, "username"), "action": "login", "placeholder": "Username"});
+            inline(env, morph1, context, "input", [], {"class": "form-control auth-user-field", "value": get(env, context, "password"), "action": "login", "placeholder": "Password", "type": "password"});
+            inline(env, morph2, context, "input", [], {"type": "checkbox", "checked": get(env, context, "remember")});
+            element(env, element1, context, "action", ["login"], {});
+            return fragment;
+          }
+        };
+      }());
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.12.0",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode(" \n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, get = hooks.get, block = hooks.block;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+          dom.insertBoundary(fragment, null);
+          block(env, morph0, context, "if", [get(env, context, "errorMsg")], {}, child0, child1);
+          return fragment;
+        }
+      };
+    }());
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.12.0",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        var hooks = env.hooks, get = hooks.get, block = hooks.block;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
+        dom.insertBoundary(fragment, null);
+        dom.insertBoundary(fragment, 0);
+        block(env, morph0, context, "if", [get(env, context, "isLoggedIn")], {}, child0, child1);
         return fragment;
       }
     };
@@ -7537,6 +7983,16 @@ define('myproject/tests/app.jshint', function () {
   });
 
 });
+define('myproject/tests/components/auth-manager.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - components');
+  test('components/auth-manager.js should pass jshint', function() { 
+    ok(true, 'components/auth-manager.js should pass jshint.'); 
+  });
+
+});
 define('myproject/tests/controllers/application.jshint', function () {
 
   'use strict';
@@ -7658,6 +8114,39 @@ define('myproject/tests/transforms/object.jshint', function () {
   module('JSHint - transforms');
   test('transforms/object.js should pass jshint', function() { 
     ok(true, 'transforms/object.js should pass jshint.'); 
+  });
+
+});
+define('myproject/tests/unit/components/auth-manager-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForComponent('auth-manager', 'Unit | Component | auth manager', {
+    // Specify the other units that are required for this test
+    // needs: ['component:foo', 'helper:bar'],
+    unit: true
+  });
+
+  ember_qunit.test('it renders', function (assert) {
+    assert.expect(2);
+
+    // Creates the component instance
+    var component = this.subject();
+    assert.equal(component._state, 'preRender');
+
+    // Renders the component to the page
+    this.render();
+    assert.equal(component._state, 'inDOM');
+  });
+
+});
+define('myproject/tests/unit/components/auth-manager-test.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - unit/components');
+  test('unit/components/auth-manager-test.js should pass jshint', function() { 
+    ok(true, 'unit/components/auth-manager-test.js should pass jshint.'); 
   });
 
 });
