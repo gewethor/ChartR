@@ -1040,6 +1040,25 @@ define('myproject/controllers/application', ['exports', 'ember'], function (expo
 			});
 		}).property('photos.@each', 'searchField'),
 		actions: {
+			like: function like(photo) {
+				var title = photo.get('title');
+				if (title.length >= 97) {
+					title = title.substring(0, 96) + "...";
+				}
+				var photodata = {
+					'user': this.get('userid'),
+					'title': title,
+					'objid': photo.get('id'),
+					'farm': photo.get('farm'),
+					'secret': photo.get('secret'),
+					'server': photo.get('server')
+				};
+				Ember['default'].$.post('../api/likes/', photodata, function (response) {
+					photo.set('liked', true);
+					console.log('Request to add like for photo: ' + photo.get('title') + ' returned the following response');
+					console.log(response);
+				});
+			},
 			search: function search() {
 				this.set('loading', true);
 				this.get('photos').content.clear();
@@ -1490,6 +1509,106 @@ define('myproject/templates/application', ['exports'], function (exports) {
             hasRendered: false,
             build: function build(dom) {
               var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("							");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1,"class","btn btn-warning btn-xs pull-right");
+              dom.setAttribute(el1,"disabled","disabled");
+              var el2 = dom.createTextNode("\n									");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("span");
+              dom.setAttribute(el2,"class","glyphicon glyphicon-thumbs-up");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode(" Like\n							");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            render: function render(context, env, contextualElement) {
+              var dom = env.dom;
+              dom.detectNamespace(contextualElement);
+              var fragment;
+              if (env.useFragmentCache && dom.canClone) {
+                if (this.cachedFragment === null) {
+                  fragment = this.build(dom);
+                  if (this.hasRendered) {
+                    this.cachedFragment = fragment;
+                  } else {
+                    this.hasRendered = true;
+                  }
+                }
+                if (this.cachedFragment) {
+                  fragment = dom.cloneNode(this.cachedFragment, true);
+                }
+              } else {
+                fragment = this.build(dom);
+              }
+              return fragment;
+            }
+          };
+        }());
+        var child1 = (function() {
+          return {
+            isHTMLBars: true,
+            revision: "Ember@1.12.0",
+            blockParams: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            build: function build(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createTextNode("							");
+              dom.appendChild(el0, el1);
+              var el1 = dom.createElement("button");
+              dom.setAttribute(el1,"class","btn btn-default btn-xs pull-right");
+              var el2 = dom.createTextNode("\n									");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createElement("span");
+              dom.setAttribute(el2,"class","glyphicon glyphicon-thumbs-up");
+              dom.appendChild(el1, el2);
+              var el2 = dom.createTextNode(" Like\n							");
+              dom.appendChild(el1, el2);
+              dom.appendChild(el0, el1);
+              var el1 = dom.createTextNode("\n");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            render: function render(context, env, contextualElement) {
+              var dom = env.dom;
+              var hooks = env.hooks, get = hooks.get, element = hooks.element;
+              dom.detectNamespace(contextualElement);
+              var fragment;
+              if (env.useFragmentCache && dom.canClone) {
+                if (this.cachedFragment === null) {
+                  fragment = this.build(dom);
+                  if (this.hasRendered) {
+                    this.cachedFragment = fragment;
+                  } else {
+                    this.hasRendered = true;
+                  }
+                }
+                if (this.cachedFragment) {
+                  fragment = dom.cloneNode(this.cachedFragment, true);
+                }
+              } else {
+                fragment = this.build(dom);
+              }
+              var element2 = dom.childAt(fragment, [1]);
+              element(env, element2, context, "action", ["like", get(env, context, "photo")], {});
+              return fragment;
+            }
+          };
+        }());
+        var child2 = (function() {
+          return {
+            isHTMLBars: true,
+            revision: "Ember@1.12.0",
+            blockParams: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            build: function build(dom) {
+              var el0 = dom.createDocumentFragment();
               var el1 = dom.createTextNode("						");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("button");
@@ -1589,7 +1708,11 @@ define('myproject/templates/application', ['exports'], function (exports) {
             dom.appendChild(el4, el5);
             var el5 = dom.createComment("");
             dom.appendChild(el4, el5);
-            var el5 = dom.createTextNode(" Views)");
+            var el5 = dom.createTextNode(" Views)\n");
+            dom.appendChild(el4, el5);
+            var el5 = dom.createComment("");
+            dom.appendChild(el4, el5);
+            var el5 = dom.createTextNode("					");
             dom.appendChild(el4, el5);
             dom.appendChild(el3, el4);
             var el4 = dom.createTextNode("\n					");
@@ -1658,31 +1781,33 @@ define('myproject/templates/application', ['exports'], function (exports) {
             } else {
               fragment = this.build(dom);
             }
-            var element2 = dom.childAt(fragment, [1]);
-            var element3 = dom.childAt(element2, [1]);
+            var element3 = dom.childAt(fragment, [1]);
             var element4 = dom.childAt(element3, [1]);
-            var element5 = dom.childAt(element4, [3]);
-            var element6 = dom.childAt(element4, [5]);
-            var element7 = dom.childAt(element3, [3]);
-            var element8 = dom.childAt(element7, [1]);
-            var morph0 = dom.createMorphAt(element4,1,1);
-            var morph1 = dom.createMorphAt(element5,0,0);
-            var attrMorph0 = dom.createAttrMorph(element5, 'href');
-            var morph2 = dom.createMorphAt(element6,0,0);
-            var attrMorph1 = dom.createAttrMorph(element6, 'href');
-            var morph3 = dom.createMorphAt(element8,0,0);
-            var morph4 = dom.createMorphAt(element8,2,2);
-            var morph5 = dom.createUnsafeMorphAt(element7,3,3);
-            var morph6 = dom.createMorphAt(dom.childAt(element2, [5, 3]),1,1);
+            var element5 = dom.childAt(element4, [1]);
+            var element6 = dom.childAt(element5, [3]);
+            var element7 = dom.childAt(element5, [5]);
+            var element8 = dom.childAt(element4, [3]);
+            var element9 = dom.childAt(element8, [1]);
+            var morph0 = dom.createMorphAt(element5,1,1);
+            var morph1 = dom.createMorphAt(element6,0,0);
+            var attrMorph0 = dom.createAttrMorph(element6, 'href');
+            var morph2 = dom.createMorphAt(element7,0,0);
+            var attrMorph1 = dom.createAttrMorph(element7, 'href');
+            var morph3 = dom.createMorphAt(element9,0,0);
+            var morph4 = dom.createMorphAt(element9,2,2);
+            var morph5 = dom.createMorphAt(element9,4,4);
+            var morph6 = dom.createUnsafeMorphAt(element8,3,3);
+            var morph7 = dom.createMorphAt(dom.childAt(element3, [5, 3]),1,1);
             inline(env, morph0, context, "light-box", [], {"href": get(env, context, "photo.url"), "data-lightbox": get(env, context, "photo.id"), "data-title": get(env, context, "photo.title"), "data-class": "media-object feed-img"});
-            attribute(env, attrMorph0, element5, "href", get(env, context, "photo.link"));
+            attribute(env, attrMorph0, element6, "href", get(env, context, "photo.link"));
             content(env, morph1, context, "photo.humanReadableDate");
-            attribute(env, attrMorph1, element6, "href", get(env, context, "photo.ownerurl"));
+            attribute(env, attrMorph1, element7, "href", get(env, context, "photo.ownerurl"));
             content(env, morph2, context, "photo.owner.username");
             content(env, morph3, context, "photo.title");
             content(env, morph4, context, "photo.views");
-            content(env, morph5, context, "photo.description");
-            block(env, morph6, context, "each", [get(env, context, "photo.tags")], {"keyword": "tag"}, child0, null);
+            block(env, morph5, context, "if", [get(env, context, "photo.liked")], {}, child0, child1);
+            content(env, morph6, context, "photo.description");
+            block(env, morph7, context, "each", [get(env, context, "photo.tags")], {"keyword": "tag"}, child2, null);
             return fragment;
           }
         };
@@ -2003,7 +2128,7 @@ define('myproject/templates/application', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, block = hooks.block, content = hooks.content, get = hooks.get;
+        var hooks = env.hooks, block = hooks.block, get = hooks.get, inline = hooks.inline;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -2021,12 +2146,12 @@ define('myproject/templates/application', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var element9 = dom.childAt(fragment, [2, 1, 3]);
-        var morph0 = dom.createMorphAt(element9,1,1);
-        var morph1 = dom.createMorphAt(element9,2,2);
+        var element10 = dom.childAt(fragment, [2, 1, 3]);
+        var morph0 = dom.createMorphAt(element10,1,1);
+        var morph1 = dom.createMorphAt(element10,2,2);
         var morph2 = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
         block(env, morph0, context, "bs-form", [], {"formLayout": "inline", "class": "search-form", "action": "search"}, child0, null);
-        content(env, morph1, context, "auth-manager");
+        inline(env, morph1, context, "auth-manager", [], {"class": "auth-mgr", "userid": get(env, context, "userid")});
         block(env, morph2, context, "liquid-if", [get(env, context, "filteredPhotosLoaded")], {"use": "toDown"}, child1, child2);
         return fragment;
       }
