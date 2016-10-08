@@ -76,13 +76,26 @@ class LikeViewSet(viewsets.ModelViewSet):
 	def create(self, request):
 		serializer = self.get_serializer(data=request.data)
 		if serializer.is_valid():
-			serializer.save()
-			print str(serializer.data)
-			profile, created = Userprofile.objects.get_or_create(user__id=int(serializer.data['user']))
-			profile.likes.add(serializer.data['id'])
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
+			if serializer.validated_data['user'] == request.user:
+				serializer.save()
+				print str(serializer.data)
+				profile, created = Userprofile.objects.get_or_create(user__id=int(serializer.data['user']))
+				profile.likes.add(serializer.data['id'])
+				return Response(serializer.data, status=status.HTTP_201_CREATED)
+			else:
+				return Response('Not authorized')
 		else:
 			return Response(serializer.errors)
+
+	def list(self, request):
+		likes = Like.objects.filter(user=request.user)
+		serializer = LikeSerializer(likes, many=True, context={'request': request})
+		return Response(serializer.data)
+
+	def retrieve(self, request, pk):
+		like = get_object_or_404(Like, id=pk,user=request.user)
+		serializer = LikeSerializer(like, context={'request': request})
+		return Response(serializer.data)
 
 class UserprofileViewSet(viewsets.ModelViewSet):
 	"""
