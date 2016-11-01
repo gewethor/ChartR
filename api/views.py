@@ -55,7 +55,7 @@ class Session(APIView):
 
 def home(request):
 	"""
-	Send requests to / to the ember.js clientside app """
+	Send requests to / to the Chartreuse.js clientside app """
 	return render_to_response('index.html',
 				{}, RequestContext(request))
 
