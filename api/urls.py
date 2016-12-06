@@ -9,6 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'likes', views.LikeViewSet)
 router.register(r'userprofiles', views.UserprofileViewSet)
+router.register(r'bankdata', views.bankdataViewSet)
 
 urlpatterns = [
 	url(r'^session/', views.Session.as_view()),

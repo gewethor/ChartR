@@ -18,7 +18,7 @@ class Like(models.Model):
 
 	class Admin(admin.ModelAdmin):
 		list_display = ('title', 'objid', 'user')
-	
+
 class Userprofile(models.Model):
 	user = models.ForeignKey(User)
 	likes = models.ManyToManyField(Like)
@@ -28,3 +28,16 @@ class Userprofile(models.Model):
 
 	class Admin(admin.ModelAdmin):
 		list_display = ('user',)
+
+class bankdata(models.Model):
+	user = models.ForeignKey(User)
+	date = models.CharField(max_length=10, blank=False)
+	desc = models.CharField(max_length=50, blank=False)
+	amount = models.IntegerField(blank=False)
+	option = models.CharField(max_length=50, blank=False) 
+
+	def __str__(self):
+		return self.user.username
+
+	class Admin(admin.ModelAdmin):
+		list_display = ('user', 'date', 'desc', 'amount', 'option')

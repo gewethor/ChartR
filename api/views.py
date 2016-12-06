@@ -1,3 +1,4 @@
+
 from django.shortcuts import *
 
 # Import models
@@ -102,4 +103,8 @@ class UserprofileViewSet(viewsets.ModelViewSet):
 	API endpoint that allows users to be viewed.
 	"""
 	queryset = Userprofile.objects.all()
-	serializer_class = UserprofileSerializer 
+	serializer_class = UserprofileSerializer
+
+class bankdataViewSet(viewsets.ModelViewSet):
+	queryset = bankdata.objects.all()
+	serializer_class = bankdataSerializer

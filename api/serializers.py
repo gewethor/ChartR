@@ -42,3 +42,8 @@ class UserprofileSerializer(serializers.ModelSerializer):
 		model = Userprofile
 		fields = ('id', 'user', 'likes')
 		depth = 1
+
+class bankdataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = bankdata
+        fields = ('user', 'date', 'desc', 'amount', 'option')
