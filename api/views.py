@@ -24,7 +24,7 @@ class Session(APIView):
 		data = {
 			'isauthenticated': isauthenticated,
 			'userid': userid,
-			'username': username
+			'username': username,
 		}
 		if error:
 			data['message'] = error
@@ -34,7 +34,7 @@ class Session(APIView):
 	def get(self, request, *args, **kwargs):
 		# Get the current user
 		if request.user.is_authenticated():
-			return self.form_response(True, request.user.id, request.user.username)
+				return self.form_response(True, request.user.id, request.user.username)
 		return self.form_response(False, None, None)
 
 	def post(self, request, *args, **kwargs):
