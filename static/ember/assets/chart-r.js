@@ -468,23 +468,65 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 	'use strict';
 
 	exports['default'] = Ember['default'].Controller.extend({
+		pieValue1: 0,
+		pieValue2: 0,
+		pieValue3: 0,
+		pieValue4: 0,
+		pieValue5: 0,
+		pieValue6: 0,
+		pieValue7: 0,
+		pieValue8: 11,
+		pieValue9: 110,
 		lastrow: 0, //last row for keeping track of input table rows
-		pieValue1: 300,
-		pieValue2: 50,
-		pieValue3: 100,
-		pieData: Ember['default'].computed('pieValue1', 'picValue2', 'pieValue3', function () {
+		init: function init() {
+			this._super();
+			var controllerObj = this;
+			var tempcount1 = 0;
+			var tempcount2 = 0;
+			var tempcount3 = 0;
+			var tempcount4 = 0;
+			var tempcount5 = 0;
+			var tempcount6 = 0;
+			var tempcount7 = 0;
+			Ember['default'].$.getJSON('../api/bankdata/', function (response) {
+				for (var alpha = 0; alpha < response.length; alpha++) {
+					if (response[alpha].option === 'Fast Food') {
+						tempcount1 += response[alpha].amount;
+						controllerObj.set('pieValue1', tempcount1);
+					} else if (response[alpha].option === 'Happy Hour') {
+						tempcount2 += response[alpha].amount;
+						controllerObj.set('pieValue2', tempcount2);
+					} else if (response[alpha].option === 'Clothing') {
+						tempcount3 += response[alpha].amount;
+						controllerObj.set('pieValue3', tempcount3);
+					} else if (response[alpha].option === 'Short Term Savings') {
+						tempcount4 += response[alpha].amount;
+						controllerObj.set('pieValue4', tempcount4);
+					} else if (response[alpha].option === 'Long Term Savings') {
+						tempcount5 += response[alpha].amount;
+						controllerObj.set('pieValue5', tempcount5);
+					} else if (response[alpha].option === 'Makeup') {
+						tempcount6 += response[alpha].amount;
+						controllerObj.set('pieValue6', tempcount6);
+					} else if (response[alpha].option === 'Vacation Spending') {
+						tempcount7 += response[alpha].amount;
+						controllerObj.set('pieValue7', tempcount7);
+					} else {
+						console.log("Uh Oh!");
+					}
+				}
+			});
+		},
+		pieData: Ember['default'].computed('pieValue1', 'pieValue2', 'pieValue3', 'pieValue4', 'pieValue5', 'pieValue6', 'pieValue7', function () {
 			return {
-				labels: ["Purple", "Green", "Bittersweet"],
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue1')), parseInt(this.get('pieValue2')), parseInt(this.get('pieValue3'))],
-					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
-					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
+					data: [parseFloat(this.get('pieValue1')), parseFloat(this.get('pieValue2')), parseFloat(this.get('pieValue3')), parseFloat(this.get('pieValue4')), parseFloat(this.get('pieValue5')), parseFloat(this.get('pieValue6')), parseFloat(this.get('pieValue7'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieValue4: 10,
-		pieValue5: 70,
-		pieValue6: 600,
 		pieData2: Ember['default'].computed('pieValue4', 'picValue5', 'pieValue6', function () {
 			return {
 				labels: ["Purple", "Green", "Bittersweet"],
@@ -495,9 +537,6 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				}]
 			};
 		}),
-		pieValue7: 300,
-		pieValue8: 50,
-		pieValue9: 100,
 		pieData3: Ember['default'].computed('pieValue7', 'picValue8', 'pieValue9', function () {
 			return {
 				labels: ["Purple", "Green", "Bittersweet"],
@@ -534,15 +573,33 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				Ember['default'].$('#rowid-' + id).remove();
 			},
 			submit: function submit() {
-				var data = Ember['default'].$("#ITable tr.data").map(function () {
-					var sub = [];
-					Ember['default'].$('.inputValue', this).each(function () {
-						var d = Ember['default'].$(this).val() || Ember['default'].$(this).text();
-						sub.push(d);
-						console.log(d);
-					});
-					return sub;
-				});
+				var test1 = 0;
+				var test2 = 0;
+				var test3 = 0;
+				/*			var data = Ember.$("#ITable tr.data").map(function () {
+	   				var sub = [];
+	   				Ember.$('.inputValue', this).each(function () {
+	   					var d = Ember.$(this).val() || Ember.$(this).text();
+	   					sub.push(d);
+	   					console.log(d);
+	   				});
+	   				console.log('sub is:');
+	   				console.log(sub);
+	   				var postdata = {
+	   					'user' : 1,
+	   					'date' : sub[0],
+	   					'desc' : sub[1],
+	   					'amount': Number(sub[2]),
+	   					'option': sub[3],
+	   				};
+	   				Ember.$.post('../api/bankdata/', postdata, function(response){
+	   					console.log('Made request with response:');
+	   					console.log(response);
+	   				});
+	   				return sub;
+	   
+	   			});
+	   */
 				for (var dcount = 0; dcount < data.length; dcount = dcount + 4) {
 					var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 					if (data[dcount].match(re) === null) {
@@ -555,37 +612,90 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 
 						if (year < 1000 || year > 3000 || month === 0 || month > 12) {
 							alert("Please submit a valid date.");
-							return false;
+							test1 = 1;
+							return false, test1;
+						} else {
+							localStorage.setItem("Date" + dcount, data[dcount]);
+							test1 = 0;
+							return test1;
 						}
 
 						var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
 						//if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)){
 						//	monthLength[1] = 29;
 						//	return day > 0 && day <= monthLength[month - 1];
 						//}
-						localStorage.setItem("Date" + dcount, data[dcount]);
 					}
 				}
 				for (var desc = 1; desc < data.length; desc = desc + 4) {
 					var redesc = /^[a-zA-Z0-9]/;
 					if (data[desc].match(redesc) === null) {
 						alert("Sorry! No special characters accepted.");
+						test2 = 1;
+						return test2;
 					} else {
 						localStorage.setItem("Description" + desc, data[desc]);
+						test2 = 0;
+						return test2;
 					}
 				}
 				for (var ammo = 2; ammo < data.length; ammo = ammo + 4) {
 					var reammo = /^\d+(?:\.\d{0,2})$/;
 					if (data[ammo].match(reammo) === null) {
 						alert("Please submit a valid curreny amount (0.00)");
+						test3 = 1;
+						return test3;
 					} else {
 						localStorage.setItem("Amount" + ammo, data[ammo]);
+						test3 = 0;
+						return test3;
 					}
 				}
 				for (var opt = 3; opt < data.length; opt = opt + 4) {
 					localStorage.setItem("Option" + opt, data[opt]);
 				}
+				if (test1 === 1 || test2 === 1 || test3 === 1) {
+					alert("You did something wrong!");
+				} else {
+					var data = Ember['default'].$("#ITable tr.data").map(function () {
+						var sub = [];
+						Ember['default'].$('.inputValue', this).each(function () {
+							var d = Ember['default'].$(this).val() || Ember['default'].$(this).text();
+							sub.push(d);
+							console.log(d);
+						});
+						console.log('sub is:');
+						console.log(sub);
+						var postdata = {
+							'user': 1,
+							'date': sub[0],
+							'desc': sub[1],
+							'amount': Number(sub[2]),
+							'option': sub[3]
+						};
+						Ember['default'].$.post('../api/bankdata/', postdata, function (response) {
+							console.log('Made request with response:');
+							console.log(response);
+						});
+						return sub;
+					});
+				}
+			},
+			loaddata: function loaddata() {
+				var table1 = document.getElementById('ITable2').getElementsByTagName('tbody')[0];
+				Ember['default'].$.getJSON('../api/bankdata/', function (response) {
+					for (var beta = 0; beta < response.length; beta++) {
+						var row1 = table1.insertRow(table1.rows.length);
+						var cells1 = row1.insertCell(0);
+						var cells2 = row1.insertCell(1);
+						var cells3 = row1.insertCell(2);
+						var cells4 = row1.insertCell(3);
+						cells1.innerHTML = response[beta].date;
+						cells2.innerHTML = response[beta].desc;
+						cells3.innerHTML = response[beta].amount;
+						cells4.innerHTML = response[beta].option;
+					}
+				});
 			}
 		}
 	});
@@ -806,7 +916,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 87,
+              "line": 122,
               "column": 2
             }
           },
@@ -822,7 +932,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el2 = dom.createTextNode("Welcome to Chartreuse");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode(" \n	");
+          var el1 = dom.createTextNode("\n	");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("h4");
           dom.setAttribute(el1,"id","description");
@@ -832,7 +942,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
-          var el2 = dom.createTextNode(" \n");
+          var el2 = dom.createTextNode(" \n\n");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("title");
           var el3 = dom.createTextNode("Bootstrap Case");
@@ -865,7 +975,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el2 = dom.createElement("script");
           dom.setAttribute(el2,"src","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode(" \n\n	");
+          var el2 = dom.createTextNode("\n\n	");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("ul");
           dom.setAttribute(el2,"class","nav nav-tabs");
@@ -893,9 +1003,11 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("a");
           dom.setAttribute(el4,"class","dropdown-toggle");
-          dom.setAttribute(el4,"href","#PME");
-          dom.setAttribute(el4,"role","tab");
-          dom.setAttribute(el4,"data-toggle","tab");
+          dom.setAttribute(el4,"href","#");
+          dom.setAttribute(el4,"role","button");
+          dom.setAttribute(el4,"data-toggle","dropdown");
+          dom.setAttribute(el4,"aria-haspopup","true");
+          dom.setAttribute(el4,"aria-expanded","false");
           var el5 = dom.createTextNode("Past Months Expenditure ");
           dom.appendChild(el4, el5);
           var el5 = dom.createElement("span");
@@ -909,27 +1021,156 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el5 = dom.createTextNode("\n        ");
           dom.appendChild(el4, el5);
           var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
           var el6 = dom.createElement("a");
-          dom.setAttribute(el6,"href","#OCT");
-          var el7 = dom.createTextNode("October 2016");
+          dom.setAttribute(el6,"href","#JAN");
+          dom.setAttribute(el6,"aria-controls","JAN");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("January");
           dom.appendChild(el6, el7);
           dom.appendChild(el5, el6);
           dom.appendChild(el4, el5);
           var el5 = dom.createTextNode("\n        ");
           dom.appendChild(el4, el5);
           var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
           var el6 = dom.createElement("a");
-          dom.setAttribute(el6,"href","#SEP");
-          var el7 = dom.createTextNode("September 2016");
+          dom.setAttribute(el6,"href","#FEB");
+          dom.setAttribute(el6,"aria-controls","FEB");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("February");
           dom.appendChild(el6, el7);
           dom.appendChild(el5, el6);
           dom.appendChild(el4, el5);
           var el5 = dom.createTextNode("\n        ");
           dom.appendChild(el4, el5);
           var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#MAR");
+          dom.setAttribute(el6,"aria-controls","MAR");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("March");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#APR");
+          dom.setAttribute(el6,"aria-controls","APR");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("April");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#MAY");
+          dom.setAttribute(el6,"aria-controls","MAY");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("May");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#JUN");
+          dom.setAttribute(el6,"aria-controls","JUN");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("June");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#JUL");
+          dom.setAttribute(el6,"aria-controls","JUL");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("July");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
           var el6 = dom.createElement("a");
           dom.setAttribute(el6,"href","#AUG");
-          var el7 = dom.createTextNode("August 2016");
+          dom.setAttribute(el6,"aria-controls","AUG");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("Auguest");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#SEP");
+          dom.setAttribute(el6,"aria-controls","SEP");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("September");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#OCT");
+          dom.setAttribute(el6,"aria-controls","OCT");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("Oktober");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#NOV");
+          dom.setAttribute(el6,"aria-controls","NOV");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("November");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("li");
+          dom.setAttribute(el5,"role","presentation");
+          var el6 = dom.createElement("a");
+          dom.setAttribute(el6,"href","#DEC");
+          dom.setAttribute(el6,"aria-controls","DEC");
+          dom.setAttribute(el6,"role","tab");
+          dom.setAttribute(el6,"data-toggle","tab");
+          var el7 = dom.createTextNode("December");
           dom.appendChild(el6, el7);
           dom.appendChild(el5, el6);
           dom.appendChild(el4, el5);
@@ -965,10 +1206,23 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
-          var el3 = dom.createTextNode(" \n  ");
+          var el3 = dom.createTextNode(" \n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("li");
+          dom.setAttribute(el3,"role","presentation");
+          var el4 = dom.createElement("a");
+          dom.setAttribute(el4,"href","#VT");
+          dom.setAttribute(el4,"aria-controls","VT");
+          dom.setAttribute(el4,"role","tab");
+          dom.setAttribute(el4,"data-toggle","tab");
+          var el5 = dom.createTextNode("View Table");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n  ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n\n  ");
+          var el2 = dom.createTextNode(" \n\n  ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("div");
           dom.setAttribute(el2,"class","tab-content");
@@ -1059,7 +1313,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el5 = dom.createTextNode("Import Table");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
-          var el4 = dom.createTextNode(" \n      ");
+          var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("p");
           dom.appendChild(el3, el4);
@@ -1118,7 +1372,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           dom.appendChild(el6, el7);
           var el7 = dom.createElement("td");
           dom.setAttribute(el7,"class","inputValue");
-          var el8 = dom.createTextNode("Insert Date(MM/DD/YYYY)");
+          var el8 = dom.createTextNode("MM/DD/YYYY");
           dom.appendChild(el7, el8);
           dom.appendChild(el6, el7);
           var el7 = dom.createTextNode("\n              ");
@@ -1132,7 +1386,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           dom.appendChild(el6, el7);
           var el7 = dom.createElement("td");
           dom.setAttribute(el7,"class","inputValue");
-          var el8 = dom.createTextNode("Insert Amount(0.00)");
+          var el8 = dom.createTextNode("00.00");
           dom.appendChild(el7, el8);
           dom.appendChild(el6, el7);
           var el7 = dom.createTextNode("\n              ");
@@ -1166,7 +1420,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el11 = dom.createTextNode("Happy Hour");
           dom.appendChild(el10, el11);
           dom.appendChild(el9, el10);
-          var el10 = dom.createTextNode(" \n                    ");
+          var el10 = dom.createTextNode("\n                    ");
           dom.appendChild(el9, el10);
           var el10 = dom.createElement("option");
           var el11 = dom.createTextNode("Clothing");
@@ -1234,6 +1488,106 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el4 = dom.createTextNode("\n    ");
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode(" \n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","VT");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("View Table");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This table shows all expenditures.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("button");
+          dom.setAttribute(el4,"type","button");
+          var el5 = dom.createTextNode(" Load Me Some Data ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("table");
+          dom.setAttribute(el4,"id","ITable2");
+          dom.setAttribute(el4,"class","table table-striped");
+          var el5 = dom.createTextNode("\n          ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("thead");
+          var el6 = dom.createTextNode("\n            ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("tr");
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("th");
+          var el8 = dom.createTextNode("Date");
+          dom.appendChild(el7, el8);
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("th");
+          var el8 = dom.createTextNode("Description");
+          dom.appendChild(el7, el8);
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("th");
+          var el8 = dom.createTextNode("Amount");
+          dom.appendChild(el7, el8);
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("th");
+          var el8 = dom.createTextNode("Option");
+          dom.appendChild(el7, el8);
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n            ");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n          ");
+          dom.appendChild(el4, el5);
+          var el5 = dom.createElement("tbody");
+          var el6 = dom.createTextNode("\n            ");
+          dom.appendChild(el5, el6);
+          var el6 = dom.createElement("tr");
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("td");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("td");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("td");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n              ");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createElement("td");
+          dom.appendChild(el6, el7);
+          var el7 = dom.createTextNode("\n            ");
+          dom.appendChild(el6, el7);
+          dom.appendChild(el5, el6);
+          var el6 = dom.createTextNode("\n          ");
+          dom.appendChild(el5, el6);
+          dom.appendChild(el4, el5);
+          var el5 = dom.createTextNode("\n        ");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n\n  ");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
@@ -1250,22 +1604,25 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var element2 = dom.childAt(element1, [5]);
           var element3 = dom.childAt(element1, [7, 3, 1, 9, 0]);
           var element4 = dom.childAt(element1, [9]);
-          var morphs = new Array(6);
+          var element5 = dom.childAt(element0, [9, 5]);
+          var morphs = new Array(7);
           morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]),5,5);
           morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]),5,5);
           morphs[2] = dom.createMorphAt(dom.childAt(element0, [5]),5,5);
           morphs[3] = dom.createElementMorph(element2);
           morphs[4] = dom.createElementMorph(element3);
           morphs[5] = dom.createElementMorph(element4);
+          morphs[6] = dom.createElementMorph(element5);
           return morphs;
         },
         statements: [
-          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData",["loc",[null,[31,36],[31,43]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[31,6],[31,78]]]],
-          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData2",["loc",[null,[37,36],[37,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[37,6],[37,79]]]],
-          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData3",["loc",[null,[43,36],[43,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[43,6],[43,79]]]],
-          ["element","action",["addrow"],[],["loc",[null,[49,28],[49,47]]]],
-          ["element","action",["deleterow"],[],["loc",[null,[77,64],[77,86]]]],
-          ["element","action",["submit"],[],["loc",[null,[81,28],[81,47]]]]
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData",["loc",[null,[42,36],[42,43]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[42,6],[42,78]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData2",["loc",[null,[48,36],[48,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[48,6],[48,79]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData3",["loc",[null,[54,36],[54,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[54,6],[54,79]]]],
+          ["element","action",["addrow"],[],["loc",[null,[60,28],[60,47]]]],
+          ["element","action",["deleterow"],[],["loc",[null,[88,64],[88,86]]]],
+          ["element","action",["submit"],[],["loc",[null,[92,28],[92,47]]]],
+          ["element","action",["loaddata"],[],["loc",[null,[98,28],[98,49]]]]
         ],
         locals: [],
         templates: []
@@ -1279,11 +1636,11 @@ define('chart-r/templates/application', ['exports'], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 88,
+                "line": 123,
                 "column": 4
               },
               "end": {
-                "line": 89,
+                "line": 124,
                 "column": 4
               }
             },
@@ -1310,11 +1667,11 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 87,
+              "line": 122,
               "column": 2
             },
             "end": {
-              "line": 90,
+              "line": 125,
               "column": 4
             }
           },
@@ -1337,7 +1694,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["block","if",[["get","errorMsg",["loc",[null,[88,10],[88,18]]]]],[],0,null,["loc",[null,[88,4],[89,11]]]]
+          ["block","if",[["get","errorMsg",["loc",[null,[123,10],[123,18]]]]],[],0,null,["loc",[null,[123,4],[124,11]]]]
         ],
         locals: [],
         templates: [child0]
@@ -1353,7 +1710,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 91,
+            "line": 126,
             "column": 10
           }
         },
@@ -1366,7 +1723,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode(" \n");
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
@@ -1385,8 +1742,8 @@ define('chart-r/templates/application', ['exports'], function (exports) {
       },
       statements: [
         ["inline","auth-manager",[],["isLoggedIn",["subexpr","@mut",[["get","isLoggedIn",["loc",[null,[1,26],[1,36]]]]],[],[]]],["loc",[null,[1,0],[1,38]]]],
-        ["block","if",[["get","isLoggedIn",["loc",[null,[2,6],[2,16]]]]],[],0,1,["loc",[null,[2,0],[90,11]]]],
-        ["content","outlet",["loc",[null,[91,0],[91,10]]]]
+        ["block","if",[["get","isLoggedIn",["loc",[null,[2,6],[2,16]]]]],[],0,1,["loc",[null,[2,0],[125,11]]]],
+        ["content","outlet",["loc",[null,[126,0],[126,10]]]]
       ],
       locals: [],
       templates: [child0, child1]
@@ -6605,7 +6962,7 @@ define('chart-r/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 103, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 112, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 164, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 178, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -6995,7 +7352,7 @@ catch(err) {
 if (runningTests) {
   require("chart-r/tests/test-helper");
 } else {
-  require("chart-r/app")["default"].create({"name":"chart-r","version":"0.0.0.692b41bb"});
+  require("chart-r/app")["default"].create({"name":"chart-r","version":"0.0.0.6be07ff4"});
 }
 
 /* jshint ignore:end */

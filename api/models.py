@@ -33,7 +33,7 @@ class bankdata(models.Model):
 	user = models.ForeignKey(User)
 	date = models.CharField(max_length=10, blank=False)
 	desc = models.CharField(max_length=50, blank=False)
-	amount = models.IntegerField(blank=False)
+	amount = models.FloatField(blank=False)
 	option = models.CharField(max_length=50, blank=False) 
 
 	def __str__(self):
