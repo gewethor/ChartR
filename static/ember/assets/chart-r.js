@@ -675,35 +675,41 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 			var tempcount19a = 0;
 			var tempcount20a = 0;
 			var tempcount21a = 0;
+			var today = new Date();
+			var month = (today.getMonth() + 1).toString();
 			Ember['default'].$.getJSON('../api/bankdata/', function (response) {
+				//CME chart sorter
 				for (var alpha = 0; alpha < response.length; alpha++) {
-					if (response[alpha].option === 'Fast Food') {
-						tempcount1 += response[alpha].amount;
-						controllerObj.set('pieValue1', tempcount1);
-					} else if (response[alpha].option === 'Happy Hour') {
-						tempcount2 += response[alpha].amount;
-						controllerObj.set('pieValue2', tempcount2);
-					} else if (response[alpha].option === 'Clothing') {
-						tempcount3 += response[alpha].amount;
-						controllerObj.set('pieValue3', tempcount3);
-					} else if (response[alpha].option === 'Short Term Savings') {
-						tempcount4 += response[alpha].amount;
-						controllerObj.set('pieValue4', tempcount4);
-					} else if (response[alpha].option === 'Long Term Savings') {
-						tempcount5 += response[alpha].amount;
-						controllerObj.set('pieValue5', tempcount5);
-					} else if (response[alpha].option === 'Makeup') {
-						tempcount6 += response[alpha].amount;
-						controllerObj.set('pieValue6', tempcount6);
-					} else if (response[alpha].option === 'Vacation Spending') {
-						tempcount7 += response[alpha].amount;
-						controllerObj.set('pieValue7', tempcount7);
-					} else {
-						console.log("Uh Oh!");
+					if (response[alpha].date.substring(0, 2) === month) {
+						if (response[alpha].option === 'Fast Food') {
+							tempcount1 += response[alpha].amount;
+							controllerObj.set('pieValue1', tempcount1);
+						} else if (response[alpha].option === 'Happy Hour') {
+							tempcount2 += response[alpha].amount;
+							controllerObj.set('pieValue2', tempcount2);
+						} else if (response[alpha].option === 'Clothing') {
+							tempcount3 += response[alpha].amount;
+							controllerObj.set('pieValue3', tempcount3);
+						} else if (response[alpha].option === 'Short Term Savings') {
+							tempcount4 += response[alpha].amount;
+							controllerObj.set('pieValue4', tempcount4);
+						} else if (response[alpha].option === 'Long Term Savings') {
+							tempcount5 += response[alpha].amount;
+							controllerObj.set('pieValue5', tempcount5);
+						} else if (response[alpha].option === 'Makeup') {
+							tempcount6 += response[alpha].amount;
+							controllerObj.set('pieValue6', tempcount6);
+						} else if (response[alpha].option === 'Vacation Spending') {
+							tempcount7 += response[alpha].amount;
+							controllerObj.set('pieValue7', tempcount7);
+						} else {
+							console.log("Uh Oh!");
+						}
 					}
 				}
 			});
 			Ember['default'].$.getJSON('../api/bankdata/', function (response2) {
+				// JAN - DEC Months of sorting data by month
 				for (var charlie = 0; charlie < response2.length; charlie++) {
 					if (response2[charlie].date.substring(0, 2) === '01') {
 						if (response2[charlie].option === 'Fast Food') {
@@ -1009,33 +1015,35 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				}
 			});
 			Ember['default'].$.getJSON('../api/bankdata/', function (response1) {
+				//Variables pieValue8,9,17-21 are for averaging
 				for (var beta = 0; beta < response1.length; beta++) {
 					if (response1[beta].option === 'Fast Food') {
-						tempcount8 += response1[beta].amount;
-						tempcount8a += 1;
+						tempcount8 += response1[beta].amount; //adds value to tempcount## if it occurs
+						tempcount8a += 1; // Counts up the number of times Fast food occurs
 					} else if (response1[beta].option === 'Happy Hour') {
-						tempcount9 += response1[beta].amount;
-						tempcount9a += 1;
-					} else if (response1[beta].option === 'Clothing') {
-						tempcount17 += response1[beta].amount;
-						tempcount17a += 1;
-					} else if (response1[beta].option === 'Short Term Savings') {
-						tempcount18 += response1[beta].amount;
-						tempcount18a += 1;
-					} else if (response1[beta].option === 'Long Term Savings') {
-						tempcount19 += response1[beta].amount;
-						tempcount19a += 1;
-					} else if (response1[beta].option === 'Makeup') {
-						tempcount20 += response1[beta].amount;
-						tempcount20a += 1;
-					} else if (response1[beta].option === 'Vacation Spending') {
-						tempcount21 += response1[beta].amount;
-						tempcount21a += 1;
-					} else {
-						console.log("Uh Oh!");
-					}
+							tempcount9 += response1[beta].amount; //adds value to tempcount## if it occurs
+							tempcount9a += 1; // counts up the number of times happy hour occurs
+						} else if (response1[beta].option === 'Clothing') {
+								tempcount17 += response1[beta].amount; //adds value to tempcount## if it occurs
+								tempcount17a += 1; // counts up the number of time clothing occurs
+							} else if (response1[beta].option === 'Short Term Savings') {
+									tempcount18 += response1[beta].amount; //adds value to tempcount## if it occurs
+									tempcount18a += 1; // counts up the number of times STS occurs
+								} else if (response1[beta].option === 'Long Term Savings') {
+										tempcount19 += response1[beta].amount; //adds value to tempcount## if it occurs
+										tempcount19a += 1; // counts up the number of times LTS occurs
+									} else if (response1[beta].option === 'Makeup') {
+											tempcount20 += response1[beta].amount; //adds value to tempcount## if it occurs
+											tempcount20a += 1; // counts up the number of time Makeup occurs
+										} else if (response1[beta].option === 'Vacation Spending') {
+												tempcount21 += response1[beta].amount; //adds value to tempcount## if it occurs
+												tempcount21a += 1; // counts up the number of times Vac Spending occurs
+											} else {
+													console.log("Uh Oh!");
+												}
 				}
 				if (tempcount8a === '0') {
+					// Sets demonator to 1 if no options occur for a specific value.
 					tempcount8a = 1;
 					return false;
 				} else if (tempcount9a === '0') {
@@ -1057,7 +1065,7 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 					tempcount21a = 1;
 					return false;
 				} else {
-					controllerObj.set('pieValue8', parseFloat(tempcount8 / tempcount8a));
+					controllerObj.set('pieValue8', parseFloat(tempcount8 / tempcount8a)); //sets values for averaging chart
 					controllerObj.set('pieValue9', parseFloat(tempcount9 / tempcount9a));
 					controllerObj.set('pieValue17', parseFloat(tempcount17 / tempcount17a));
 					controllerObj.set('pieValue18', parseFloat(tempcount18 / tempcount18a));
@@ -1352,7 +1360,7 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 						var cells4 = row1.insertCell(3);
 						cells1.innerHTML = response[beta].date;
 						cells2.innerHTML = response[beta].desc;
-						cells3.innerHTML = response[beta].amount;
+						cells3.innerHTML = response[beta].amount; // known bug: stacks table data instead of clearing and reloading
 						cells4.innerHTML = response[beta].option;
 					}
 				});
@@ -7919,7 +7927,7 @@ define('chart-r/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 943, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 957, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 947, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 961, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -8309,7 +8317,7 @@ catch(err) {
 if (runningTests) {
   require("chart-r/tests/test-helper");
 } else {
-  require("chart-r/app")["default"].create({"name":"chart-r","version":"0.0.0.6be07ff4"});
+  require("chart-r/app")["default"].create({"name":"chart-r","version":"0.0.0.98f7cfe0"});
 }
 
 /* jshint ignore:end */
