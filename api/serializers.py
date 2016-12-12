@@ -7,7 +7,8 @@ from api.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'url')
+        fields = ('id', 'username', 'email', 'url') 
+
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,4 +47,26 @@ class UserprofileSerializer(serializers.ModelSerializer):
 class bankdataSerializer(serializers.ModelSerializer):
     class Meta:
         model = bankdata
-        fields = ('user', 'date', 'desc', 'amount', 'option')
+        fields = ('user', 'date', 'desc', 'amount', 'option') 
+
+    def validate_user(self, value):
+        return self.check_str(value);
+
+    def validate_date(self, value):
+        return self.check_str(value);
+
+    def validate_desc(self, value):
+        return self.check_str(value);
+
+    def validate_amount(self, value):
+        return self.check_str(value);
+
+    def validate_option(self, value):
+        return self.check_str(value);
+
+    def check_str(self, value):
+        if 'javascript' in str(value):
+            raise serializers.ValidationError('Malicious content is blocked')
+        elif '>' in str(value) or '<' in str(value):
+            raise serializers.ValidationError('HTML is not allowed')
+        return value

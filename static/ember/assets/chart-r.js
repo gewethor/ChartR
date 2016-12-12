@@ -475,8 +475,20 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 		pieValue5: 0,
 		pieValue6: 0,
 		pieValue7: 0,
-		pieValue8: 11,
-		pieValue9: 110,
+		pieValue8: 0,
+		pieValue9: 0,
+		pieValue10: 0,
+		pieValue11: 0,
+		pieValue12: 0,
+		pieValue13: 0,
+		pieValue14: 0,
+		pieValue15: 0,
+		pieValue16: 0,
+		pieValue17: 0,
+		pieValue18: 0,
+		pieValue19: 0,
+		pieValue20: 0,
+		pieValue21: 0,
 		lastrow: 0, //last row for keeping track of input table rows
 		init: function init() {
 			this._super();
@@ -488,6 +500,27 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 			var tempcount5 = 0;
 			var tempcount6 = 0;
 			var tempcount7 = 0;
+			var tempcount8 = 0;
+			var tempcount9 = 0;
+			var tempcount10 = 0;
+			var tempcount11 = 0;
+			var tempcount12 = 0;
+			var tempcount13 = 0;
+			var tempcount14 = 0;
+			var tempcount15 = 0;
+			var tempcount16 = 0;
+			var tempcount17 = 0;
+			var tempcount18 = 0;
+			var tempcount19 = 0;
+			var tempcount20 = 0;
+			var tempcount21 = 0;
+			var tempcount8a = 0;
+			var tempcount9a = 0;
+			var tempcount17a = 0;
+			var tempcount18a = 0;
+			var tempcount19a = 0;
+			var tempcount20a = 0;
+			var tempcount21a = 0;
 			Ember['default'].$.getJSON('../api/bankdata/', function (response) {
 				for (var alpha = 0; alpha < response.length; alpha++) {
 					if (response[alpha].option === 'Fast Food') {
@@ -516,6 +549,369 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 					}
 				}
 			});
+			Ember['default'].$.getJSON('../api/bankdata/', function (response2) {
+				for (var charlie = 0; charlie < response2.length; charlie++) {
+					if (response2[charlie].date.substring(0, 2) === '01') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '02') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '03') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '04') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '05') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '06') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '07') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '08') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '09') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '10') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else if (response2[charlie].date.substring(0, 2) === '11') {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					} else {
+						if (response2[charlie].option === 'Fast Food') {
+							tempcount10 += response2[charlie].amount;
+							controllerObj.set('pieValue10', tempcount10);
+						} else if (response2[charlie].option === 'Happy Hour') {
+							tempcount11 += response2[charlie].amount;
+							controllerObj.set('pieValue11', tempcount11);
+						} else if (response2[charlie].option === 'Clothing') {
+							tempcount12 += response2[charlie].amount;
+							controllerObj.set('pieValue12', tempcount12);
+						} else if (response2[charlie].option === 'Short Term Savings') {
+							tempcount13 += response2[charlie].amount;
+							controllerObj.set('pieValue13', tempcount13);
+						} else if (response2[charlie].option === 'Long Term Savings') {
+							tempcount14 += response2[charlie].amount;
+							controllerObj.set('pieValue14', tempcount14);
+						} else if (response2[charlie].option === 'Makeup') {
+							tempcount15 += response2[charlie].amount;
+							controllerObj.set('pieValue15', tempcount15);
+						} else if (response2[charlie].option === 'Vacation Spending') {
+							tempcount16 += response2[charlie].amount;
+							controllerObj.set('pieValue16', tempcount16);
+						} else {
+							console.log("Uh Oh!");
+						}
+					}
+				}
+			});
+			Ember['default'].$.getJSON('../api/bankdata/', function (response1) {
+				for (var beta = 0; beta < response1.length; beta++) {
+					if (response1[beta].option === 'Fast Food') {
+						tempcount8 += response1[beta].amount;
+						tempcount8a += 1;
+					} else if (response1[beta].option === 'Happy Hour') {
+						tempcount9 += response1[beta].amount;
+						tempcount9a += 1;
+					} else if (response1[beta].option === 'Clothing') {
+						tempcount17 += response1[beta].amount;
+						tempcount17a += 1;
+					} else if (response1[beta].option === 'Short Term Savings') {
+						tempcount18 += response1[beta].amount;
+						tempcount18a += 1;
+					} else if (response1[beta].option === 'Long Term Savings') {
+						tempcount19 += response1[beta].amount;
+						tempcount19a += 1;
+					} else if (response1[beta].option === 'Makeup') {
+						tempcount20 += response1[beta].amount;
+						tempcount20a += 1;
+					} else if (response1[beta].option === 'Vacation Spending') {
+						tempcount21 += response1[beta].amount;
+						tempcount21a += 1;
+					} else {
+						console.log("Uh Oh!");
+					}
+				}
+				if (tempcount8a === '0') {
+					tempcount8a = 1;
+					return false;
+				} else if (tempcount9a === '0') {
+					tempcount9a = 1;
+					return false;
+				} else if (tempcount17a === '0') {
+					tempcount17a = 1;
+					return false;
+				} else if (tempcount18a === '0') {
+					tempcount18a = 1;
+					return false;
+				} else if (tempcount19a === '0') {
+					tempcount19a = 1;
+					return false;
+				} else if (tempcount20a === '0') {
+					tempcount20a = 1;
+					return false;
+				} else if (tempcount21a === '0') {
+					tempcount21a = 1;
+					return false;
+				} else {
+					controllerObj.set('pieValue8', parseFloat(tempcount8 / tempcount8a));
+					controllerObj.set('pieValue9', parseFloat(tempcount9 / tempcount9a));
+					controllerObj.set('pieValue17', parseFloat(tempcount17 / tempcount17a));
+					controllerObj.set('pieValue18', parseFloat(tempcount18 / tempcount18a));
+					controllerObj.set('pieValue19', parseFloat(tempcount19 / tempcount19a));
+					controllerObj.set('pieValue20', parseFloat(tempcount20 / tempcount20a));
+					controllerObj.set('pieValue21', parseFloat(tempcount21 / tempcount21a));
+				}
+			});
 		},
 		pieData: Ember['default'].computed('pieValue1', 'pieValue2', 'pieValue3', 'pieValue4', 'pieValue5', 'pieValue6', 'pieValue7', function () {
 			return {
@@ -527,23 +923,133 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				}]
 			};
 		}),
-		pieData2: Ember['default'].computed('pieValue4', 'picValue5', 'pieValue6', function () {
+		pieDataJAN: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
 			return {
-				labels: ["Purple", "Green", "Bittersweet"],
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue4')), parseInt(this.get('pieValue5')), parseInt(this.get('pieValue6'))],
-					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
-					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieData3: Ember['default'].computed('pieValue7', 'picValue8', 'pieValue9', function () {
+		pieDataFEB: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
 			return {
-				labels: ["Purple", "Green", "Bittersweet"],
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue7')), parseInt(this.get('pieValue8')), parseInt(this.get('pieValue9'))],
-					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68"],
-					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e"]
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataMAR: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataAPR: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataMAY: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataJUN: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataJUL: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataAUG: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataSEP: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataOCT: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataNOV: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieDataDEC: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
+				}]
+			};
+		}),
+		pieData3: Ember['default'].computed('pieValue8', 'picValue9', 'pieValue17', 'pieValue18', 'pieValue19', 'pieValue20', 'pieValue21', function () {
+			return {
+				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
+				datasets: [{
+					data: [parseFloat(this.get('pieValue8')), parseFloat(this.get('pieValue9')), parseFloat(this.get('pieValue17')), parseFloat(this.get('pieValue18')), parseFloat(this.get('pieValue19')), parseFloat(this.get('pieValue20')), parseFloat(this.get('pieValue21'))],
+					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
+					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
@@ -916,7 +1422,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
               "column": 0
             },
             "end": {
-              "line": 122,
+              "line": 186,
               "column": 2
             }
           },
@@ -1256,7 +1762,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el3 = dom.createElement("div");
           dom.setAttribute(el3,"role","tabpanel");
           dom.setAttribute(el3,"class","tab-pane in active");
-          dom.setAttribute(el3,"id","PME");
+          dom.setAttribute(el3,"id","JAN");
           var el4 = dom.createTextNode("\n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createElement("h3");
@@ -1269,7 +1775,32 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
           dom.appendChild(el4, el5);
           dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
           var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("  \n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","FEB");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
           dom.appendChild(el3, el4);
           var el4 = dom.createComment("");
           dom.appendChild(el3, el4);
@@ -1277,6 +1808,256 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           dom.appendChild(el3, el4);
           dom.appendChild(el2, el3);
           var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","MAR");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","APR");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode(" \n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","MAY");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","JUN");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","JUL");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode(" \n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","AUG");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","SEP");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","OCT");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("  \n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","NOV");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("  \n\n    ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createElement("div");
+          dom.setAttribute(el3,"role","tabpanel");
+          dom.setAttribute(el3,"class","tab-pane in active");
+          dom.setAttribute(el3,"id","DEC");
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("h3");
+          var el5 = dom.createTextNode("Past Month's Expenditure");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("p");
+          var el5 = dom.createTextNode("This chart shows your previous months expenses, to see expenses from a specific month, select the drop down menu on this tab and select the month you would like to see.");
+          dom.appendChild(el4, el5);
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode(" \n      ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createComment("");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createTextNode("\n    ");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode(" \n\n    ");
           dom.appendChild(el2, el3);
           var el3 = dom.createElement("div");
           dom.setAttribute(el3,"role","tabpanel");
@@ -1600,29 +2381,51 @@ define('chart-r/templates/application', ['exports'], function (exports) {
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element0 = dom.childAt(fragment, [4, 15]);
-          var element1 = dom.childAt(element0, [7]);
+          var element1 = dom.childAt(element0, [29]);
           var element2 = dom.childAt(element1, [5]);
           var element3 = dom.childAt(element1, [7, 3, 1, 9, 0]);
           var element4 = dom.childAt(element1, [9]);
-          var element5 = dom.childAt(element0, [9, 5]);
-          var morphs = new Array(7);
+          var element5 = dom.childAt(element0, [31, 5]);
+          var morphs = new Array(18);
           morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]),5,5);
           morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]),5,5);
           morphs[2] = dom.createMorphAt(dom.childAt(element0, [5]),5,5);
-          morphs[3] = dom.createElementMorph(element2);
-          morphs[4] = dom.createElementMorph(element3);
-          morphs[5] = dom.createElementMorph(element4);
-          morphs[6] = dom.createElementMorph(element5);
+          morphs[3] = dom.createMorphAt(dom.childAt(element0, [7]),5,5);
+          morphs[4] = dom.createMorphAt(dom.childAt(element0, [9]),5,5);
+          morphs[5] = dom.createMorphAt(dom.childAt(element0, [11]),5,5);
+          morphs[6] = dom.createMorphAt(dom.childAt(element0, [13]),5,5);
+          morphs[7] = dom.createMorphAt(dom.childAt(element0, [15]),5,5);
+          morphs[8] = dom.createMorphAt(dom.childAt(element0, [17]),5,5);
+          morphs[9] = dom.createMorphAt(dom.childAt(element0, [19]),5,5);
+          morphs[10] = dom.createMorphAt(dom.childAt(element0, [21]),5,5);
+          morphs[11] = dom.createMorphAt(dom.childAt(element0, [23]),5,5);
+          morphs[12] = dom.createMorphAt(dom.childAt(element0, [25]),5,5);
+          morphs[13] = dom.createMorphAt(dom.childAt(element0, [27]),5,5);
+          morphs[14] = dom.createElementMorph(element2);
+          morphs[15] = dom.createElementMorph(element3);
+          morphs[16] = dom.createElementMorph(element4);
+          morphs[17] = dom.createElementMorph(element5);
           return morphs;
         },
         statements: [
           ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData",["loc",[null,[42,36],[42,43]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[42,6],[42,78]]]],
-          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData2",["loc",[null,[48,36],[48,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[48,6],[48,79]]]],
-          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData3",["loc",[null,[54,36],[54,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[54,6],[54,79]]]],
-          ["element","action",["addrow"],[],["loc",[null,[60,28],[60,47]]]],
-          ["element","action",["deleterow"],[],["loc",[null,[88,64],[88,86]]]],
-          ["element","action",["submit"],[],["loc",[null,[92,28],[92,47]]]],
-          ["element","action",["loaddata"],[],["loc",[null,[98,28],[98,49]]]]
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataJAN",["loc",[null,[48,36],[48,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[48,6],[48,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataFEB",["loc",[null,[54,36],[54,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[54,6],[54,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataMAR",["loc",[null,[60,36],[60,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[60,6],[60,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataAPR",["loc",[null,[66,36],[66,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[66,6],[66,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataMAY",["loc",[null,[71,36],[71,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[71,6],[71,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataJUN",["loc",[null,[77,36],[77,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[77,6],[77,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataJUL",["loc",[null,[83,36],[83,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[83,6],[83,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataAUG",["loc",[null,[88,36],[88,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[88,6],[88,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataSEP",["loc",[null,[94,36],[94,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[94,6],[94,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataOCT",["loc",[null,[100,36],[100,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[100,6],[100,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataNOV",["loc",[null,[106,36],[106,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[106,6],[106,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieDataDEC",["loc",[null,[112,36],[112,46]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[112,6],[112,81]]]],
+          ["inline","ember-chart",[],["type","pie","data",["subexpr","@mut",[["get","pieData3",["loc",[null,[118,36],[118,44]]]]],[],[]],"width",350,"height",350,"legend",true],["loc",[null,[118,6],[118,79]]]],
+          ["element","action",["addrow"],[],["loc",[null,[124,28],[124,47]]]],
+          ["element","action",["deleterow"],[],["loc",[null,[152,64],[152,86]]]],
+          ["element","action",["submit"],[],["loc",[null,[156,28],[156,47]]]],
+          ["element","action",["loaddata"],[],["loc",[null,[162,28],[162,49]]]]
         ],
         locals: [],
         templates: []
@@ -1636,11 +2439,11 @@ define('chart-r/templates/application', ['exports'], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 123,
+                "line": 187,
                 "column": 4
               },
               "end": {
-                "line": 124,
+                "line": 188,
                 "column": 4
               }
             },
@@ -1667,11 +2470,11 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 122,
+              "line": 186,
               "column": 2
             },
             "end": {
-              "line": 125,
+              "line": 189,
               "column": 4
             }
           },
@@ -1694,7 +2497,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["block","if",[["get","errorMsg",["loc",[null,[123,10],[123,18]]]]],[],0,null,["loc",[null,[123,4],[124,11]]]]
+          ["block","if",[["get","errorMsg",["loc",[null,[187,10],[187,18]]]]],[],0,null,["loc",[null,[187,4],[188,11]]]]
         ],
         locals: [],
         templates: [child0]
@@ -1710,7 +2513,7 @@ define('chart-r/templates/application', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 126,
+            "line": 190,
             "column": 10
           }
         },
@@ -1742,8 +2545,8 @@ define('chart-r/templates/application', ['exports'], function (exports) {
       },
       statements: [
         ["inline","auth-manager",[],["isLoggedIn",["subexpr","@mut",[["get","isLoggedIn",["loc",[null,[1,26],[1,36]]]]],[],[]]],["loc",[null,[1,0],[1,38]]]],
-        ["block","if",[["get","isLoggedIn",["loc",[null,[2,6],[2,16]]]]],[],0,1,["loc",[null,[2,0],[125,11]]]],
-        ["content","outlet",["loc",[null,[126,0],[126,10]]]]
+        ["block","if",[["get","isLoggedIn",["loc",[null,[2,6],[2,16]]]]],[],0,1,["loc",[null,[2,0],[189,11]]]],
+        ["content","outlet",["loc",[null,[190,0],[190,10]]]]
       ],
       locals: [],
       templates: [child0, child1]
@@ -6962,7 +7765,7 @@ define('chart-r/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 164, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 178, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 789, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 803, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
   });
 
 });
