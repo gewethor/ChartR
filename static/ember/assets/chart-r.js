@@ -468,27 +468,104 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 	'use strict';
 
 	exports['default'] = Ember['default'].Controller.extend({
-		pieValue1: 0,
+		pieValue1: 0, // CME Data start
 		pieValue2: 0,
 		pieValue3: 0,
 		pieValue4: 0,
 		pieValue5: 0,
 		pieValue6: 0,
-		pieValue7: 0,
-		pieValue8: 0,
-		pieValue9: 0,
-		pieValue10: 0,
-		pieValue11: 0,
-		pieValue12: 0,
-		pieValue13: 0,
-		pieValue14: 0,
-		pieValue15: 0,
-		pieValue16: 0,
-		pieValue17: 0,
+		pieValue7: 0, // CME data end
+		pieValue8: 0, // Avg Data
+		pieValue9: 0, // Avg Data
+		pieValue10: 0, // Jan data
+		pieValue11: 0, // Jan data
+		pieValue12: 0, // Jan data
+		pieValue13: 0, // Jan data
+		pieValue14: 0, // Jan data
+		pieValue15: 0, // Jan data
+		pieValue16: 0, // Jan data
+		pieValue17: 0, // Average Data holders
 		pieValue18: 0,
 		pieValue19: 0,
 		pieValue20: 0,
-		pieValue21: 0,
+		pieValue21: 0, // End of Average Data
+		pieValue22: 0, // Start of FEB
+		pieValue23: 0,
+		pieValue24: 0,
+		pieValue25: 0,
+		pieValue26: 0,
+		pieValue27: 0,
+		pieValue28: 0, // End of FEB
+		pieValue29: 0, // Start of March
+		pieValue30: 0,
+		pieValue31: 0,
+		pieValue32: 0,
+		pieValue33: 0,
+		pieValue34: 0,
+		pieValue35: 0, // End of March
+		pieValue36: 0, // Start of APR
+		pieValue37: 0,
+		pieValue38: 0,
+		pieValue39: 0,
+		pieValue40: 0,
+		pieValue41: 0,
+		pieValue42: 0, // End of APR
+		pieValue43: 0, // Start of May
+		pieValue44: 0,
+		pieValue45: 0,
+		pieValue46: 0,
+		pieValue47: 0,
+		pieValue48: 0,
+		pieValue49: 0, // End of May
+		pieValue50: 0, // Start of JUN
+		pieValue51: 0,
+		pieValue52: 0,
+		pieValue53: 0,
+		pieValue54: 0,
+		pieValue55: 0,
+		pieValue56: 0, // End of JUN
+		pieValue57: 0, // Start of JUL
+		pieValue58: 0,
+		pieValue59: 0,
+		pieValue60: 0,
+		pieValue61: 0,
+		pieValue62: 0,
+		pieValue63: 0, // End of JUL
+		pieValue64: 0, // Start of AUG
+		pieValue65: 0,
+		pieValue66: 0,
+		pieValue67: 0,
+		pieValue68: 0,
+		pieValue69: 0,
+		pieValue70: 0, // End of AUG
+		pieValue71: 0, // Start of SEP
+		pieValue72: 0,
+		pieValue73: 0,
+		pieValue74: 0,
+		pieValue75: 0,
+		pieValue76: 0,
+		pieValue77: 0, // End of SEP
+		pieValue78: 0, // Start of OCT
+		pieValue79: 0,
+		pieValue80: 0,
+		pieValue81: 0,
+		pieValue82: 0,
+		pieValue83: 0,
+		pieValue84: 0, // End of OCT
+		pieValue85: 0, // Start of NOV
+		pieValue86: 0,
+		pieValue87: 0,
+		pieValue88: 0,
+		pieValue89: 0,
+		pieValue90: 0,
+		pieValue91: 0, // End of NOV
+		pieValue92: 0, // Start of DEC
+		pieValue93: 0,
+		pieValue94: 0,
+		pieValue95: 0,
+		pieValue96: 0,
+		pieValue97: 0,
+		pieValue98: 0, // End of DEC
 		lastrow: 0, //last row for keeping track of input table rows
 		init: function init() {
 			this._super();
@@ -514,6 +591,83 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 			var tempcount19 = 0;
 			var tempcount20 = 0;
 			var tempcount21 = 0;
+			var tempcount22 = 0;
+			var tempcount23 = 0;
+			var tempcount24 = 0;
+			var tempcount25 = 0;
+			var tempcount26 = 0;
+			var tempcount27 = 0;
+			var tempcount28 = 0;
+			var tempcount29 = 0;
+			var tempcount30 = 0;
+			var tempcount31 = 0;
+			var tempcount32 = 0;
+			var tempcount33 = 0;
+			var tempcount34 = 0;
+			var tempcount35 = 0;
+			var tempcount36 = 0;
+			var tempcount37 = 0;
+			var tempcount38 = 0;
+			var tempcount39 = 0;
+			var tempcount40 = 0;
+			var tempcount41 = 0;
+			var tempcount42 = 0;
+			var tempcount43 = 0;
+			var tempcount44 = 0;
+			var tempcount45 = 0;
+			var tempcount46 = 0;
+			var tempcount47 = 0;
+			var tempcount48 = 0;
+			var tempcount49 = 0;
+			var tempcount50 = 0;
+			var tempcount51 = 0;
+			var tempcount52 = 0;
+			var tempcount53 = 0;
+			var tempcount54 = 0;
+			var tempcount55 = 0;
+			var tempcount56 = 0;
+			var tempcount57 = 0;
+			var tempcount58 = 0;
+			var tempcount59 = 0;
+			var tempcount60 = 0;
+			var tempcount61 = 0;
+			var tempcount62 = 0;
+			var tempcount63 = 0;
+			var tempcount64 = 0;
+			var tempcount65 = 0;
+			var tempcount66 = 0;
+			var tempcount67 = 0;
+			var tempcount68 = 0;
+			var tempcount69 = 0;
+			var tempcount70 = 0;
+			var tempcount71 = 0;
+			var tempcount72 = 0;
+			var tempcount73 = 0;
+			var tempcount74 = 0;
+			var tempcount75 = 0;
+			var tempcount76 = 0;
+			var tempcount77 = 0;
+			var tempcount78 = 0;
+			var tempcount79 = 0;
+			var tempcount80 = 0;
+			var tempcount81 = 0;
+			var tempcount82 = 0;
+			var tempcount83 = 0;
+			var tempcount84 = 0;
+			var tempcount85 = 0;
+			var tempcount86 = 0;
+			var tempcount87 = 0;
+			var tempcount88 = 0;
+			var tempcount89 = 0;
+			var tempcount90 = 0;
+			var tempcount91 = 0;
+			var tempcount92 = 0;
+			var tempcount93 = 0;
+			var tempcount94 = 0;
+			var tempcount95 = 0;
+			var tempcount96 = 0;
+			var tempcount97 = 0;
+			var tempcount98 = 0;
 			var tempcount8a = 0;
 			var tempcount9a = 0;
 			var tempcount17a = 0;
@@ -578,276 +732,276 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '02') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount22 += response2[charlie].amount;
+							controllerObj.set('pieValue22', tempcount22);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount23 += response2[charlie].amount;
+							controllerObj.set('pieValue23', tempcount23);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount24 += response2[charlie].amount;
+							controllerObj.set('pieValue24', tempcount24);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount25 += response2[charlie].amount;
+							controllerObj.set('pieValue25', tempcount25);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount26 += response2[charlie].amount;
+							controllerObj.set('pieValue26', tempcount26);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount27 += response2[charlie].amount;
+							controllerObj.set('pieValue27', tempcount27);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount28 += response2[charlie].amount;
+							controllerObj.set('pieValue28', tempcount28);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '03') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount29 += response2[charlie].amount;
+							controllerObj.set('pieValue29', tempcount29);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount30 += response2[charlie].amount;
+							controllerObj.set('pieValue30', tempcount30);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount31 += response2[charlie].amount;
+							controllerObj.set('pieValue31', tempcount31);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount32 += response2[charlie].amount;
+							controllerObj.set('pieValue32', tempcount32);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount33 += response2[charlie].amount;
+							controllerObj.set('pieValue33', tempcount33);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount34 += response2[charlie].amount;
+							controllerObj.set('pieValue34', tempcount34);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount35 += response2[charlie].amount;
+							controllerObj.set('pieValue35', tempcount35);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '04') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount36 += response2[charlie].amount;
+							controllerObj.set('pieValue36', tempcount36);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount37 += response2[charlie].amount;
+							controllerObj.set('pieValue37', tempcount37);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount38 += response2[charlie].amount;
+							controllerObj.set('pieValue38', tempcount38);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount39 += response2[charlie].amount;
+							controllerObj.set('pieValue39', tempcount39);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount40 += response2[charlie].amount;
+							controllerObj.set('pieValue40', tempcount40);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount41 += response2[charlie].amount;
+							controllerObj.set('pieValue41', tempcount41);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount42 += response2[charlie].amount;
+							controllerObj.set('pieValue42', tempcount42);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '05') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount43 += response2[charlie].amount;
+							controllerObj.set('pieValue43', tempcount43);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount44 += response2[charlie].amount;
+							controllerObj.set('pieValue44', tempcount44);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount45 += response2[charlie].amount;
+							controllerObj.set('pieValue45', tempcount45);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount46 += response2[charlie].amount;
+							controllerObj.set('pieValue46', tempcount46);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount47 += response2[charlie].amount;
+							controllerObj.set('pieValue47', tempcount47);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount48 += response2[charlie].amount;
+							controllerObj.set('pieValue48', tempcount48);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount49 += response2[charlie].amount;
+							controllerObj.set('pieValue49', tempcount49);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '06') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount50 += response2[charlie].amount;
+							controllerObj.set('pieValue50', tempcount50);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount51 += response2[charlie].amount;
+							controllerObj.set('pieValue51', tempcount51);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount52 += response2[charlie].amount;
+							controllerObj.set('pieValue52', tempcount52);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount53 += response2[charlie].amount;
+							controllerObj.set('pieValue53', tempcount53);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount54 += response2[charlie].amount;
+							controllerObj.set('pieValue54', tempcount54);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount55 += response2[charlie].amount;
+							controllerObj.set('pieValue55', tempcount55);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount56 += response2[charlie].amount;
+							controllerObj.set('pieValue56', tempcount56);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '07') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount57 += response2[charlie].amount;
+							controllerObj.set('pieValue57', tempcount57);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount58 += response2[charlie].amount;
+							controllerObj.set('pieValue58', tempcount58);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount59 += response2[charlie].amount;
+							controllerObj.set('pieValue59', tempcount59);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount60 += response2[charlie].amount;
+							controllerObj.set('pieValue60', tempcount60);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount61 += response2[charlie].amount;
+							controllerObj.set('pieValue61', tempcount61);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount62 += response2[charlie].amount;
+							controllerObj.set('pieValue62', tempcount62);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount63 += response2[charlie].amount;
+							controllerObj.set('pieValue63', tempcount63);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '08') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount64 += response2[charlie].amount;
+							controllerObj.set('pieValue64', tempcount64);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount65 += response2[charlie].amount;
+							controllerObj.set('pieValue65', tempcount65);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount66 += response2[charlie].amount;
+							controllerObj.set('pieValue66', tempcount66);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount67 += response2[charlie].amount;
+							controllerObj.set('pieValue67', tempcount67);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount68 += response2[charlie].amount;
+							controllerObj.set('pieValue68', tempcount68);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount69 += response2[charlie].amount;
+							controllerObj.set('pieValue69', tempcount69);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount70 += response2[charlie].amount;
+							controllerObj.set('pieValue70', tempcount70);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '09') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount71 += response2[charlie].amount;
+							controllerObj.set('pieValue71', tempcount71);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount72 += response2[charlie].amount;
+							controllerObj.set('pieValue72', tempcount72);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount73 += response2[charlie].amount;
+							controllerObj.set('pieValue73', tempcount73);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount74 += response2[charlie].amount;
+							controllerObj.set('pieValue74', tempcount74);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount75 += response2[charlie].amount;
+							controllerObj.set('pieValue75', tempcount75);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount76 += response2[charlie].amount;
+							controllerObj.set('pieValue76', tempcount76);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount77 += response2[charlie].amount;
+							controllerObj.set('pieValue77', tempcount77);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '10') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount78 += response2[charlie].amount;
+							controllerObj.set('pieValue78', tempcount78);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount79 += response2[charlie].amount;
+							controllerObj.set('pieValue79', tempcount79);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount80 += response2[charlie].amount;
+							controllerObj.set('pieValue80', tempcount80);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount81 += response2[charlie].amount;
+							controllerObj.set('pieValue81', tempcount81);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount82 += response2[charlie].amount;
+							controllerObj.set('pieValue82', tempcount82);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount83 += response2[charlie].amount;
+							controllerObj.set('pieValue83', tempcount83);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount84 += response2[charlie].amount;
+							controllerObj.set('pieValue84', tempcount84);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else if (response2[charlie].date.substring(0, 2) === '11') {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount85 += response2[charlie].amount;
+							controllerObj.set('pieValue85', tempcount85);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount86 += response2[charlie].amount;
+							controllerObj.set('pieValue86', tempcount86);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount87 += response2[charlie].amount;
+							controllerObj.set('pieValue87', tempcount87);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount88 += response2[charlie].amount;
+							controllerObj.set('pieValue88', tempcount88);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount89 += response2[charlie].amount;
+							controllerObj.set('pieValue89', tempcount89);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount90 += response2[charlie].amount;
+							controllerObj.set('pieValue90', tempcount90);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount91 += response2[charlie].amount;
+							controllerObj.set('pieValue91', tempcount91);
 						} else {
 							console.log("Uh Oh!");
 						}
 					} else {
 						if (response2[charlie].option === 'Fast Food') {
-							tempcount10 += response2[charlie].amount;
-							controllerObj.set('pieValue10', tempcount10);
+							tempcount92 += response2[charlie].amount;
+							controllerObj.set('pieValue92', tempcount92);
 						} else if (response2[charlie].option === 'Happy Hour') {
-							tempcount11 += response2[charlie].amount;
-							controllerObj.set('pieValue11', tempcount11);
+							tempcount93 += response2[charlie].amount;
+							controllerObj.set('pieValue93', tempcount93);
 						} else if (response2[charlie].option === 'Clothing') {
-							tempcount12 += response2[charlie].amount;
-							controllerObj.set('pieValue12', tempcount12);
+							tempcount94 += response2[charlie].amount;
+							controllerObj.set('pieValue94', tempcount94);
 						} else if (response2[charlie].option === 'Short Term Savings') {
-							tempcount13 += response2[charlie].amount;
-							controllerObj.set('pieValue13', tempcount13);
+							tempcount95 += response2[charlie].amount;
+							controllerObj.set('pieValue95', tempcount95);
 						} else if (response2[charlie].option === 'Long Term Savings') {
-							tempcount14 += response2[charlie].amount;
-							controllerObj.set('pieValue14', tempcount14);
+							tempcount96 += response2[charlie].amount;
+							controllerObj.set('pieValue96', tempcount96);
 						} else if (response2[charlie].option === 'Makeup') {
-							tempcount15 += response2[charlie].amount;
-							controllerObj.set('pieValue15', tempcount15);
+							tempcount97 += response2[charlie].amount;
+							controllerObj.set('pieValue97', tempcount97);
 						} else if (response2[charlie].option === 'Vacation Spending') {
-							tempcount16 += response2[charlie].amount;
-							controllerObj.set('pieValue16', tempcount16);
+							tempcount98 += response2[charlie].amount;
+							controllerObj.set('pieValue98', tempcount98);
 						} else {
 							console.log("Uh Oh!");
 						}
@@ -923,111 +1077,111 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				}]
 			};
 		}),
-		pieDataJAN: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataJAN: Ember['default'].computed('pieValue22', 'picValue23', 'pieValue24', 'pieValue25', 'pieValue26', 'pieValue27', 'pieValue28', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue22')), parseInt(this.get('pieValue23')), parseInt(this.get('pieValue24')), parseInt(this.get('pieValue25')), parseInt(this.get('pieValue26')), parseInt(this.get('pieValue27')), parseInt(this.get('pieValue28'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataFEB: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataFEB: Ember['default'].computed('pieValue29', 'picValue30', 'pieValue31', 'pieValue32', 'pieValue33', 'pieValue34', 'pieValue35', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue29')), parseInt(this.get('pieValue30')), parseInt(this.get('pieValue31')), parseInt(this.get('pieValue32')), parseInt(this.get('pieValue33')), parseInt(this.get('pieValue34')), parseInt(this.get('pieValue35'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataMAR: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataMAR: Ember['default'].computed('pieValue36', 'picValue37', 'pieValue38', 'pieValue39', 'pieValue40', 'pieValue41', 'pieValue42', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue36')), parseInt(this.get('pieValue37')), parseInt(this.get('pieValue38')), parseInt(this.get('pieValue39')), parseInt(this.get('pieValue40')), parseInt(this.get('pieValue41')), parseInt(this.get('pieValue42'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataAPR: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataAPR: Ember['default'].computed('pieValue43', 'picValue44', 'pieValue45', 'pieValue46', 'pieValue47', 'pieValue48', 'pieValue49', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue43')), parseInt(this.get('pieValue44')), parseInt(this.get('pieValue45')), parseInt(this.get('pieValue46')), parseInt(this.get('pieValue47')), parseInt(this.get('pieValue48')), parseInt(this.get('pieValue49'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataMAY: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataMAY: Ember['default'].computed('pieValue50', 'picValue51', 'pieValue52', 'pieValue53', 'pieValue54', 'pieValue55', 'pieValue56', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue50')), parseInt(this.get('pieValue51')), parseInt(this.get('pieValue52')), parseInt(this.get('pieValue53')), parseInt(this.get('pieValue54')), parseInt(this.get('pieValue55')), parseInt(this.get('pieValue56'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataJUN: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataJUN: Ember['default'].computed('pieValue57', 'picValue58', 'pieValue59', 'pieValue60', 'pieValue61', 'pieValue62', 'pieValue63', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue57')), parseInt(this.get('pieValue58')), parseInt(this.get('pieValue59')), parseInt(this.get('pieValue60')), parseInt(this.get('pieValue61')), parseInt(this.get('pieValue62')), parseInt(this.get('pieValue63'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataJUL: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataJUL: Ember['default'].computed('pieValue64', 'picValue65', 'pieValue66', 'pieValue67', 'pieValue68', 'pieValue69', 'pieValue70', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue64')), parseInt(this.get('pieValue65')), parseInt(this.get('pieValue66')), parseInt(this.get('pieValue67')), parseInt(this.get('pieValue68')), parseInt(this.get('pieValue69')), parseInt(this.get('pieValue70'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataAUG: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataAUG: Ember['default'].computed('pieValue71', 'picValue72', 'pieValue73', 'pieValue74', 'pieValue75', 'pieValue76', 'pieValue77', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue71')), parseInt(this.get('pieValue72')), parseInt(this.get('pieValue73')), parseInt(this.get('pieValue74')), parseInt(this.get('pieValue75')), parseInt(this.get('pieValue76')), parseInt(this.get('pieValue77'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataSEP: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataSEP: Ember['default'].computed('pieValue78', 'picValue79', 'pieValue80', 'pieValue81', 'pieValue82', 'pieValue83', 'pieValue84', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue78')), parseInt(this.get('pieValue79')), parseInt(this.get('pieValue80')), parseInt(this.get('pieValue81')), parseInt(this.get('pieValue82')), parseInt(this.get('pieValue83')), parseInt(this.get('pieValue84'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataOCT: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataOCT: Ember['default'].computed('pieValue85', 'picValue86', 'pieValue87', 'pieValue88', 'pieValue89', 'pieValue90', 'pieValue91', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue85')), parseInt(this.get('pieValue86')), parseInt(this.get('pieValue87')), parseInt(this.get('pieValue88')), parseInt(this.get('pieValue89')), parseInt(this.get('pieValue90')), parseInt(this.get('pieValue91'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
 			};
 		}),
-		pieDataNOV: Ember['default'].computed('pieValue10', 'picValue11', 'pieValue12', 'pieValue13', 'pieValue14', 'pieValue15', 'pieValue16', function () {
+		pieDataNOV: Ember['default'].computed('pieValue92', 'picValue93', 'pieValue94', 'pieValue95', 'pieValue96', 'pieValue97', 'pieValue98', function () {
 			return {
 				labels: ["Fast Food", "Happy Hour", "Clothing", "Short Term Savings", "Long Term Savings", "Makeup", "Vacation Spending"],
 				datasets: [{
-					data: [parseInt(this.get('pieValue10')), parseInt(this.get('pieValue11')), parseInt(this.get('pieValue12')), parseInt(this.get('pieValue13')), parseInt(this.get('pieValue14')), parseInt(this.get('pieValue15')), parseInt(this.get('pieValue16'))],
+					data: [parseInt(this.get('pieValue92')), parseInt(this.get('pieValue93')), parseInt(this.get('pieValue94')), parseInt(this.get('pieValue95')), parseInt(this.get('pieValue96')), parseInt(this.get('pieValue97')), parseInt(this.get('pieValue98'))],
 					backgroundColor: ["#986dc7", "#46BFBD", "#fe5e68", "#00ffff", "#33ffcc", "#4d79ff", "#e6004c"],
 					hoverBackgroundColor: ["#ae7cba", "#5AD3D1", "#fe625e", "#f0f8ff", "#3bffec", "#0039e6", "#990033"]
 				}]
@@ -7765,7 +7919,7 @@ define('chart-r/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 789, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 803, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 943, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 957, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
   });
 
 });
