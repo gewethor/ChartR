@@ -1244,30 +1244,29 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				var test1 = 0;
 				var test2 = 0;
 				var test3 = 0;
-				/*			var data = Ember.$("#ITable tr.data").map(function () {
-	   				var sub = [];
-	   				Ember.$('.inputValue', this).each(function () {
-	   					var d = Ember.$(this).val() || Ember.$(this).text();
-	   					sub.push(d);
-	   					console.log(d);
-	   				});
-	   				console.log('sub is:');
-	   				console.log(sub);
-	   				var postdata = {
-	   					'user' : 1,
-	   					'date' : sub[0],
-	   					'desc' : sub[1],
-	   					'amount': Number(sub[2]),
-	   					'option': sub[3],
-	   				};
-	   				Ember.$.post('../api/bankdata/', postdata, function(response){
-	   					console.log('Made request with response:');
-	   					console.log(response);
-	   				});
-	   				return sub;
-	   
-	   			});
-	   */
+				var data = Ember['default'].$("#ITable tr.data").map(function () {
+					var sub = [];
+					Ember['default'].$('.inputValue', this).each(function () {
+						var d = Ember['default'].$(this).val() || Ember['default'].$(this).text();
+						sub.push(d);
+						console.log(d);
+					});
+					console.log('sub is:');
+					console.log(sub);
+					var postdata = {
+						'user': 1,
+						'date': sub[0],
+						'desc': sub[1],
+						'amount': Number(sub[2]),
+						'option': sub[3]
+					};
+					Ember['default'].$.post('../api/bankdata/', postdata, function (response) {
+						console.log('Made request with response:');
+						console.log(response);
+					});
+					return sub;
+				});
+
 				for (var dcount = 0; dcount < data.length; dcount = dcount + 4) {
 					var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 					if (data[dcount].match(re) === null) {
@@ -1287,14 +1286,9 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 							test1 = 0;
 							return test1;
 						}
-
-						var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-						//if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)){
-						//	monthLength[1] = 29;
-						//	return day > 0 && day <= monthLength[month - 1];
-						//}
 					}
 				}
+
 				for (var desc = 1; desc < data.length; desc = desc + 4) {
 					var redesc = /^[a-zA-Z0-9]/;
 					if (data[desc].match(redesc) === null) {
@@ -1310,7 +1304,7 @@ define('chart-r/controllers/application', ['exports', 'ember'], function (export
 				for (var ammo = 2; ammo < data.length; ammo = ammo + 4) {
 					var reammo = /^\d+(?:\.\d{0,2})$/;
 					if (data[ammo].match(reammo) === null) {
-						alert("Please submit a valid curreny amount (0.00)");
+						alert("Please submit a valid currency amount (0.00)");
 						test3 = 1;
 						return test3;
 					} else {
@@ -7927,7 +7921,7 @@ define('chart-r/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 947, col 21, \'day\' is defined but never used.\ncontrollers/application.js: line 961, col 21, \'monthLength\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 994, col 26, \'data\' is already defined.\ncontrollers/application.js: line 994, col 21, \'data\' is defined but never used.\ncontrollers/application.js: line 947, col 21, \'day\' is defined but never used.\n\n3 errors'); 
   });
 
 });
