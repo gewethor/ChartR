@@ -109,26 +109,3 @@ class bankdataViewSet(viewsets.ModelViewSet):
 	queryset = bankdata.objects.all()
 	serializer_class = bankdataSerializer
 
-	def create(self, request):
-		serializer = self.get_serializer(data=request.data)
-		if serializer.is_valid():
-			if serializer.validated_data['user'] == request.user:
-				serializer.save()
-				print str(serializer.data)
-				profile, created = Userprofile.objects.get_or_create(user__id=int(serializer.data['user']))
-				profile.bankdata.add(serializer.data['id'])
-				return Response(serializer.data, status=status.HTTP_201_CREATED)
-			else:
-				return Response('Not authorized')
-		else:
-			return Response(serializer.errors)
-
-	def list(self, request):
-		bankdata = bankdata.objects.filter(user=request.user)
-		serializer = bankdataSerializer(bankdata, many=True, context={'request': request})
-		return Response(serializer.data)
-
-	def retrieve(self, request, pk):
-		bankdata = get_object_or_404(bankdata, id=pk,user=request.user)
-		serializer = bankdataSerializer(bankdata, context={'request': request})
-		return Response(serializer.data)
